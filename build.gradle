@@ -1,0 +1,40 @@
+plugins {
+    id 'org.springframework.boot' version '2.3.3.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.10.RELEASE'
+    id 'java'
+}
+
+group = 'pl.miklaszlukasz'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '14'
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    compile group: 'org.springframework.security', name: 'spring-security-oauth2-client', version: '5.4.0'
+    compile group: 'org.springframework.security', name: 'spring-security-oauth2-jose', version: '5.4.0'
+//    compile group: 'org.springframework.security.oauth.boot', name: 'spring-security-oauth2-autoconfigure', version: '2.3.4.RELEASE'
+    compile group: 'org.modelmapper', name: 'modelmapper', version: '2.3.8'
+    compile group: 'io.springfox', name: 'springfox-swagger2', version: '3.0.0'
+    compile group: 'io.springfox', name: 'springfox-swagger-ui', version: '3.0.0'
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
+}
+
+test {
+    useJUnitPlatform()
+}
